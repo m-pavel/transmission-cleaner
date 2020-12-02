@@ -29,7 +29,7 @@ func main() {
 			if (! mi.ReadTorrentMetaInfoFile(path.Join(*td, t.Name()))) {
 				log.Printf("Error reading %s", t.Name())
 			} else {
-				tf[mi.Info.Name] = 1
+				tf[strings.Trim(mi.Info.Name, " \t")] = 1
 				log.Printf("T: %s\n", mi.Info.Name)
 			}
 		}
