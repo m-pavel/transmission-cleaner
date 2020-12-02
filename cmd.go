@@ -5,6 +5,7 @@ import (
 	"github.com/swatkat/gotrntmetainfoparser"
 	"io/ioutil"
 	"log"
+	"os"
 	"path"
 	"strings"
 )
@@ -38,7 +39,12 @@ func main() {
 	for _, f := range files {
 		if _, ok := tf[f.Name()]; ! ok {
 			if (*clean) {
-				log.Printf("Removing %s\n", f.Name())
+				err = os.Remove(path.Join(*dd, f.Name()))
+				if err != nil {
+					log.Printf("Unable delete %s : %v\n", f.Name(), err)
+				} else {
+					log.Printf("Removed %s\n", f.Name())
+				}
 			} else {
 				log.Printf("Missing %s\n", f.Name())
 			}
