@@ -13,7 +13,7 @@ func main() {
 	td := flag.String("td", ".", "Torrents dir")
 	dd := flag.String("dd", ".", "Data dir")
 	clean := flag.Bool("delete", false, "Delete missing files")
-
+	flag.Parse()
 	files, err := ioutil.ReadDir(*dd)
 	if err != nil {
 		log.Panic(err)
